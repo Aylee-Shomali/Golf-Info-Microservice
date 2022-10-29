@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Golf Leaderboard</title>
+  </head>
+
+  <body>
+    <h1>Golf Leaderboard Microservice</h1>
+    <p>Welcome!</p>
+    <form>
+      <button type="button" onclick="getTopTenPGA()">Get Top 10 Golfers PGA</button>
+      <button type="button" onclick="getTopTenPGAProjected()">Get Top 10 Projected Golfers PGA</button>
+      <button type="button" onclick="getAllTours()">Get All Tours</button>
+    </form>
+    <p id="data">Data will go here:</p>
+    <table id="myTable">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <script>
+
+      function getTopTenPGA (){
+        clearTableData();
+        let fetchTopTenPGA = fetch("http://localhost:8081/getTopTenDev", {
+          method: "GET",
+          mode: "cors"
+        });
+
+        fetchTopTenPGA
+          .then((res) => res.json())
+          .then((d) => {
+            let table = document.getElementById("myTable");
+            // Fill header cells.
+            table.rows[0].cells[0].innerHTML = "Position";
+            table.rows[0].cells[1].innerHTML = "First Name";
+            table.rows[0].cells[2].innerHTML = "Last Name";
+            table.rows[0].cells[3].innerHTML = "Country";
+
+            // Update inner text of each cell with the data.
+            for(let i=d.length-1; i>=0; i--){
+
+              // Fill player info into each cell
+              table.rows[i+1].cells[0].innerHTML = `${i+1}`;
+              table.rows[i+1].cells[1].innerHTML = `${d[i].first_name}`;
+              table.rows[i+1].cells[2].innerHTML = `${d[i].last_name}`;
+              table.rows[i+1].cells[3].innerHTML = `${d[i].country}`;
+            }
+          });
+      }
+
+       function getTopTenPGAProjected (){
+        clearTableData();
+        let fetchTopTenPGAProjected = fetch("http://localhost:8081/getTopTenProjectedDev", {
+          method: "GET",
+          mode: "cors"
+        });
+
+        fetchTopTenPGAProjected
+          .then((res) => res.json())
+          .then((d) => {
+            let table = document.getElementById("myTable");
+            // Fill header cells.
+            table.rows[0].cells[0].innerHTML = "Projected Rank";
+            table.rows[0].cells[1].innerHTML = "Current Rank";
+            table.rows[0].cells[2].innerHTML = "First Name";
+            table.rows[0].cells[3].innerHTML = "Last Name";
+            table.rows[0].cells[4].innerHTML = "Projected Points";
+            table.rows[0].cells[5].innerHTML = "Current Points";
+
+            // Update inner text of each cell with the data.
+            for(let i=d.length-1; i>=0; i--){
+
+              // Fill player info into each cell
+              table.rows[i+1].cells[0].innerHTML = `${d[i].projected_rank}`;
+              table.rows[i+1].cells[1].innerHTML = `${d[i].current_rank}`;
+              table.rows[i+1].cells[2].innerHTML = `${d[i].first_name}`;
+              table.rows[i+1].cells[3].innerHTML = `${d[i].last_name}`;
+              table.rows[i+1].cells[4].innerHTML = `${d[i].projected_points}`;
+              table.rows[i+1].cells[5].innerHTML = `${d[i].current_points}`;
+            }
+
+          });
+      }
+
+       function getAllTours (){
+        clearTableData();
+        let fetchAllTours = fetch("http://localhost:8081/getAllToursDev", {
+          method: "GET",
+          mode: "cors"
+        });
+
+        fetchAllTours
+          .then((res) => res.json())
+          .then((d) => {
+            let table = document.getElementById("myTable");
+            // Fill header cells.
+            table.rows[0].cells[0].innerHTML = "Tour";
+            table.rows[0].cells[1].innerHTML = "Season";
+            table.rows[0].cells[2].innerHTML = "Active";
+            console.log(d);
+            // Update inner text of each cell with the data.
+            for(let i=d.length-1; i>=0; i--){
+
+              // Fill player info into each cell
+              table.rows[i+1].cells[0].innerHTML = `${d[i].tour_name}`;
+              table.rows[i+1].cells[1].innerHTML = `${d[i].season_id}`;
+              table.rows[i+1].cells[2].innerHTML = `${d[i].active}`;
+            }
+          });
+      }
+
+      function clearTableData() {
+        // Empty rows from last row of data until end of table.
+        let table = document.getElementById("myTable");
+        for(let i=0; i<=10; i++){
+              table.rows[i].cells[0].innerHTML = "";
+              table.rows[i].cells[1].innerHTML = "";
+              table.rows[i].cells[2].innerHTML = "";
+              table.rows[i].cells[3].innerHTML = "";
+              table.rows[i].cells[4].innerHTML = "";
+              table.rows[i].cells[5].innerHTML = "";
+          }
+      }
+    </script>
+  </body>
+</html>
