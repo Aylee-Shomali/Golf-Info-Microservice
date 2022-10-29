@@ -19,7 +19,19 @@ Ex: http://localhost:PORT/getAllTours
 Please note: since this microservice utilizes the Golf-Leaderboard API from Rapid API, to use these routes, you must already have a rapid-api-key and rapid-api-host in order to use it.
 If not, I can send mine to you if necessary.
 
-For an example of requesting data from the miccroservice using the Fetch API, take at a look at the sample code provided in the SamplePageToRequestData folder.
+Here is an example of requesting and recieving data from the miccroservice using the Fetch API with JavaScript. After fetching from the /getTopTen route, a response will be given from the microservice to send JSON data. You can then convert the JSON into a JavaScript object by parsing it to be able to easily access all the data from it. Additionally, feel free to take at a look at the sample code provided in the SamplePageToRequestData folder for a more complete example.
+
+        let fetchTopTenPGA = fetch("http://localhost:8081/getTopTen");
+
+        fetchTopTenPGA
+          .then((res) => res.json())
+          .then((d) => {
+              // Show player info in sample paragraph object.
+              let paragraph = document.getElementById("example");
+              
+              // Add first player's info into paragraph.
+              paragraph.innerHTML = `First Name: ${d[0].first_name}, Last Name: ${d[0].last_name}, Country: ${d[0].country}`;
+          });
 
 # UML Diagrams:
 
