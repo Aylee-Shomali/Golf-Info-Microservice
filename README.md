@@ -3,7 +3,7 @@ Created for OSU Computer Science course: CS361 Software Engineering I.
 
 How to request data from the Golf Information Microservice.
 
-Make a HTTP GET request to one of the following routes to get different types of data.
+Make an HTTP GET request to one of the following routes to get different types of data.
 You may run the microservice locally on a specified port which would then comprise the first part of the request URL.
 Ex: http://localhost:PORT/getAllTours
 
@@ -17,9 +17,8 @@ Ex: http://localhost:PORT/getAllTours
     - Get top 10 Golfers in current PGA championship.
 
 Please note: since this microservice utilizes the Golf-Leaderboard API from Rapid API, to use these routes, you must already have a rapid-api-key and rapid-api-host in order to use it.
-If not, I can send mine to you if necessary.
 
-Here is an example of requesting and recieving data from the miccroservice using the Fetch API with JavaScript. After fetching from the /getTopTen route, a response will be given from the microservice to send JSON data. You can then convert the JSON into a JavaScript object by parsing it to be able to easily access all the data from it. Additionally, feel free to take at a look at the sample code provided in the SamplePageToRequestData folder for a more complete example.
+Here is an example of requesting and recieving data from the miccroservice using the Fetch API with JavaScript. After fetching from the /getTopTen route, a response will be sent from the microservice with JSON data. You can then convert the JSON into a JavaScript object by parsing it to be able to easily access all the data. Feel free to take at a look at the sample code provided in the SamplePageToRequestData folder for a more complete example.
 
         let fetchTopTenPGA = fetch("http://localhost:8081/getTopTen");
 
