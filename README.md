@@ -1,6 +1,17 @@
 # Golf Information Microservice
 Created for OSU Computer Science course: CS361 Software Engineering I.
 
+How to Set Up:
+1. Download Code
+
+2. Open terminal in GolfLeaderBoardAPI Directory.
+
+3. Type "npm install" and hit enter.
+
+4. Type "npm start" to run the app.
+
+5. If you want to run the Sample site, follow steps 2-4 for the SamplePageToRequestData folder instead.
+
 How to request data from the Golf Information Microservice.
 
 Make an HTTP GET request to one of the following routes to get different types of data.
@@ -18,7 +29,7 @@ Ex: http://localhost:PORT/getAllTours
 
 Please note: since this microservice utilizes the Golf-Leaderboard API from Rapid API, to use these routes, you must already have a rapid-api-key and rapid-api-host in order to use it.
 
-Here is an example of requesting and recieving data from the miccroservice using the Fetch API with JavaScript. After fetching from the /getTopTen route, a response will be sent from the microservice with JSON data. You can then convert the JSON into a JavaScript object by parsing it to be able to easily access all the data. Feel free to take at a look at the sample code provided in the SamplePageToRequestData folder for a more complete example.
+Here is an example of requesting and recieving data from the microservice using the Fetch API with JavaScript. After fetching from the /getTopTen route, a response will be sent from the microservice with JSON data. You can then convert the JSON into a JavaScript object by parsing it to be able to easily access all the data. Feel free to take at a look at the sample code provided in the SamplePageToRequestData folder for a more complete example.
 
         let fetchTopTenPGA = fetch("http://localhost:8081/getTopTen");
 
